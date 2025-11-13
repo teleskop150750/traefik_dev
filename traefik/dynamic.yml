@@ -1,0 +1,30 @@
+http:
+  middlewares:
+    compress:
+      compress: {}
+    security-headers:
+      headers:
+        customFrameOptionsValue: sameorigin
+        referrerPolicy: strict-origin-when-cross-origin
+        stsSeconds: 2592000
+  routers:
+    api:
+      rule: Host(`traefik.example.com`)
+      entrypoints:
+        - websecure
+      service: api@internal
+
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /certs/example.com.pem
+        keyFile: /certs/example.com-key.pem
+  options:
+    default:
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+      sniStrict: true
+      minVersion: VersionTLS12

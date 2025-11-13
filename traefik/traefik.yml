@@ -1,0 +1,33 @@
+log:
+  level: INFO
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ":443"
+    http:
+      middlewares:
+        - compress@file
+        - security-headers@file
+    http3: {}
+
+api:
+  dashboard: true
+
+providers:
+  docker:
+    watch: true
+    network: traefik
+    exposedByDefault: false
+  file:
+    filename: /etc/traefik/dynamic.yml
+    watch: true
+
+serversTransport:
+  insecureSkipVerify: true

@@ -1,0 +1,4 @@
+traefik/certs/*.pem
+traefik/certs/*.key
+traefik/certs/*.crt
+traefik/certs/*.pfx
