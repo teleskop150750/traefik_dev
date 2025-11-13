@@ -70,3 +70,8 @@ networks:
 - ограничить доступ к dashboard, добавить middleware аутентификации; включить ACME (Let's Encrypt) — для локальной машины это обычно не нужно.
 
 Если хотите — могу добавить systemd unit или docker-compose override, чтобы Traefik автоматически запускался при старте машины.
+
+
+```sh
+docker network create traefik
+```
