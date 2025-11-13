@@ -3,14 +3,14 @@ log:
 
 entryPoints:
   web:
-    address: ":80"
+    address: ":80/tcp"
     http:
       redirections:
         entryPoint:
           to: websecure
           scheme: https
   websecure:
-    address: ":443"
+    address: ":443/tcp"
     http:
       middlewares:
         - compress@file
@@ -19,6 +19,7 @@ entryPoints:
 
 api:
   dashboard: true
+  insecure: true
 
 providers:
   docker:

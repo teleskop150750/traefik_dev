@@ -7,12 +7,17 @@ http:
         customFrameOptionsValue: sameorigin
         referrerPolicy: strict-origin-when-cross-origin
         stsSeconds: 2592000
+    hsts:
+      headers:
+        stsSeconds: 2592000
+
   routers:
     api:
       rule: Host(`traefik.example.com`)
       entrypoints:
         - websecure
       service: api@internal
+      tls: {}
 
 tls:
   stores:
@@ -26,5 +31,5 @@ tls:
         - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-      sniStrict: true
+      sniStrict: false
       minVersion: VersionTLS12
